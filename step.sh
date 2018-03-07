@@ -17,17 +17,17 @@ fi
 # ---------------------
 # --- Configs:
 
-echo " (i) Provided Android Manifest path: ${manifest_file}"
+echo " (i) Provided gradle path: ${manifest_file}"
 echo
 
 # ---------------------
 # --- Main
 
-VERSIONCODE=`grep versionCode ${manifest_file} | sed 's/.*versionCode="//;s/".*//'`
-VERSIONNAME=`grep versionName ${manifest_file} | sed 's/.*versionName\s*=\s*\"\([^\"]*\)\".*/\1/g'`
-PACKAGENAME=`grep package ${manifest_file} | sed 's/.*package\s*=\s*\"\([^\"]*\)\".*/\1/g'`
-MINSDKVERSION=`grep minSdkVersion ${manifest_file} | sed 's/.*minSdkVersion="//;s/".*//'`
-TARGETSDKVERSION=`grep targetSdkVersion ${manifest_file} | sed 's/.*targetSdkVersion="//;s/".*//'`
+VERSIONCODE=`grep versionCode ${manifest_file} | sed 's/.*versionCode "//;s/".*//'`
+VERSIONNAME=`grep versionName ${manifest_file} | sed 's/.*versionName\s* \s*\"\([^\"]*\)\".*/\1/g'`
+PACKAGENAME=`grep package ${manifest_file} | sed 's/.*applicationId\s* \s*\"\([^\"]*\)\".*/\1/g'`
+MINSDKVERSION=`grep minSdkVersion ${manifest_file} | sed 's/.*minSdkVersion "//;s/".*//'`
+TARGETSDKVERSION=`grep targetSdkVersion ${manifest_file} | sed 's/.*targetSdkVersion "//;s/".*//'`
 
 if [ -z "${VERSIONCODE}" ] ; then
   echo " [!] Could not find version code!"
