@@ -23,10 +23,10 @@ echo
 # ---------------------
 # --- Main
 
-VERSIONCODE=`grep versionCode ${manifest_file} | sed 's/.*versionCode "//;s/".*//'`
+VERSIONCODE=`grep versionCode ${manifest_file} | sed 's/.*versionCode //`
 VERSIONNAME=`grep versionName ${manifest_file} | sed 's/.*versionName\s* \s*\"\([^\"]*\)\".*/\1/g'`
-MINSDKVERSION=`grep minSdkVersion ${manifest_file} | sed 's/.*minSdkVersion "//;s/".*//'`
-TARGETSDKVERSION=`grep targetSdkVersion ${manifest_file} | sed 's/.*targetSdkVersion "//;s/".*//'`
+MINSDKVERSION=`grep minSdkVersion ${manifest_file} | sed 's/.*minSdkVersion //`
+TARGETSDKVERSION=`grep targetSdkVersion ${manifest_file} | sed 's/.*targetSdkVersion //`
 
 if [ -z "${VERSIONCODE}" ] ; then
   echo " [!] Could not find version code!"
