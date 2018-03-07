@@ -25,7 +25,6 @@ echo
 
 VERSIONCODE=`grep versionCode ${manifest_file} | sed 's/.*versionCode "//;s/".*//'`
 VERSIONNAME=`grep versionName ${manifest_file} | sed 's/.*versionName\s* \s*\"\([^\"]*\)\".*/\1/g'`
-PACKAGENAME=`grep package ${manifest_file} | sed 's/.*applicationId\s* \s*\"\([^\"]*\)\".*/\1/g'`
 MINSDKVERSION=`grep minSdkVersion ${manifest_file} | sed 's/.*minSdkVersion "//;s/".*//'`
 TARGETSDKVERSION=`grep targetSdkVersion ${manifest_file} | sed 's/.*targetSdkVersion "//;s/".*//'`
 
@@ -44,14 +43,6 @@ fi
 
 envman add --key AMI_VERSION_NAME --value "${VERSIONNAME}"
 echo " (i) Version Name: ${VERSIONNAME} -> Saved to \$AMI_VERSION_NAME environment variable."
-
-if [ -z "${PACKAGENAME}" ] ; then
-  echo " [!] Could not find package name!"
-  exit 1
-fi
-
-envman add --key AMI_PACKAGE_NAME --value "${PACKAGENAME}"
-echo " (i) Package Name: ${PACKAGENAME} -> Saved to \$AMI_PACKAGE_NAME environment variable."
 
 if [ -z "${MINSDKVERSION}" ] ; then
   echo " No minimum SDK version found in manifest"
